@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 // Post - Model defining a blog post
 type Post struct {
-  gorm.Model
+	gorm.Model
 	User     string
 	Title    string
 	Content  string
