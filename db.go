@@ -60,6 +60,6 @@ func CreateComment(comment *Comment) error {
     return fmt.Errorf("No post with id of %d", comment.PostID)
   }
 
-  result = db.Create(&comment)
+  result = db.Create(comment)
   return result.Error
 }
