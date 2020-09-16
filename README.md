@@ -6,7 +6,7 @@ An example API written in Go using Gin and GORM
 # Download dependencies
 go mod download
 
-# Build and run app
+# Build and run app on localhost:8080
 go build
 ./golang-test
 ```
