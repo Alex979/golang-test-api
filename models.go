@@ -30,5 +30,4 @@ type Comment struct {
 type CommentJSON struct {
 	User    string `json:"user" binding:"required"`
 	Content string `json:"content" binding:"required"`
-	PostID uint `json:"postID" binding:"required"`
 }

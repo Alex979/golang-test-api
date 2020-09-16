@@ -33,7 +33,7 @@ func GetPosts() []Post {
 }
 
 // GetPostByID returns a post with the given primary key
-func GetPostByID(id int) (Post, error) {
+func GetPostByID(id uint) (Post, error) {
   var post Post
   var comments []Comment
   // Get the post from the database

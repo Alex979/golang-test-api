@@ -20,14 +20,14 @@ func main() {
 	r.GET("/posts/:id", func(c *gin.Context) {
 		// Get id from URL
 		idString := c.Param("id")
-		id, err := strconv.Atoi(idString)
+		id, err := strconv.ParseUint(idString, 10, 64)
 		if err != nil {
-			c.JSON(400, gin.H{"error": "id is not an integer",})
+			c.JSON(400, gin.H{"error": "id must be an unsigned integer"})
 			return
 		}
 
 		// Find matching post
-		post, err := GetPostByID(id)
+		post, err := GetPostByID(uint(id))
 		if err != nil {
 			c.JSON(400, gin.H{"error": err.Error()})
 			return
@@ -59,7 +59,15 @@ func main() {
 	});
 
 	// Upload a comment on a post
-	r.POST("/comment", func(c *gin.Context) {
+	r.POST("/posts/:id/comment", func(c *gin.Context) {
+		// Get id from URL
+		idString := c.Param("id")
+		id, err := strconv.ParseUint(idString, 10, 64)
+		if err != nil {
+			c.JSON(400, gin.H{"error": "id must be an unsigned integer"})
+			return
+		}
+
 		// Map JSON to struct
 		var json CommentJSON
 		if err := c.ShouldBindJSON(&json); err != nil {
@@ -71,7 +79,7 @@ func main() {
 		comment := Comment{
 			User: json.User,
 			Content: json.Content,
-			PostID: json.PostID,
+			PostID: uint(id),
 		}
 		if err := CreateComment(&comment); err != nil {
 			c.JSON(500, gin.H{"error": err.Error()})

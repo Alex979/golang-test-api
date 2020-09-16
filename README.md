@@ -15,7 +15,7 @@ go build
 * Get a list of all posts: `GET /posts`
 * Get a single post + comments: `GET /posts/{id}`
 * Upload a new post: `POST /posts`
-* Upload a new comment on a post `POST /comment`
+* Upload a new comment on a post `POST /posts/{id}/comment`
 
 Example POST body for `/posts`:
 ```json
@@ -26,11 +26,10 @@ Example POST body for `/posts`:
 }
 ```
 
-Example POST body for `/comment`:
+Example POST body for `/posts/{id}/comment`:
 ```json
 {
   "user": "Alex",
   "content": "Nice to meet you!",
-  "postID": 1
 }
 ```
