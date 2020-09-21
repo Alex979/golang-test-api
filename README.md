@@ -1,7 +1,7 @@
 # Golang Test API
 An example API written in Go using Gin and GORM
 
-## Setup
+## Local Setup
 ```bash
 # Download dependencies
 go mod download
@@ -9,6 +9,15 @@ go mod download
 # Build and run app on localhost:8080
 go build
 ./golang-test
+```
+
+## Docker Setup
+```bash
+# Build docker image
+docker build --tag gotest:1.0 .
+
+# Run docker image
+docker run --publish 8080:8080 gotest:1.0
 ```
 
 ## REST API Methods
